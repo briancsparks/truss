@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 import static net.cdr0.truss.utils.Constants.*;
 
+// SEE ALSO: the CamCam-canary project (D:\data\projects\AndroidStudioProjects\cdr0\CamCam-canary)
+//           it has the version of truss that has IpcRecvTruss, IpcSendTruss, TelemetryTruss, Payload, Uploader
+//           and trussinterproc
+
 public class Truss {
 
   // Only do some things on the first run
