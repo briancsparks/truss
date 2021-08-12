@@ -18,7 +18,7 @@ public class Constants {
   public static final int       HTTP_CONNECT_TIMEOUT  = 12 * 1000;
   public static final int       HTTP_TIMEOUT          = 18 * 1000;
 
-  public static final boolean   SEND_ALL              = true;
+  public static final boolean   SEND_ALL              = false;
   public static final boolean   LOG_ALL_SENDS         = false;
 
   // Level
