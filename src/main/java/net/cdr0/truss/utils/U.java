@@ -1,6 +1,6 @@
 package net.cdr0.truss.utils;
 
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
