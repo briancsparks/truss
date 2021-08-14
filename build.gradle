@@ -12,13 +12,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'junit:junit:4.13.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-
     implementation 'org.jetbrains:annotations:20.1.0'
 
+    implementation 'org.testifyproject.junit5:junit5:1.0.6'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
     implementation 'org.json:json:20180813'
+    testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
 }
 
 test {

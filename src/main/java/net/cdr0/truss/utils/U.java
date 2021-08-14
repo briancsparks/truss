@@ -5,6 +5,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.lang.Integer.parseInt;
 
 public class U {
 
@@ -129,6 +133,45 @@ public class U {
     } catch (JSONException ex) {
       showException(ex);
     }
+  }
+
+  // ------------------------------------------------------------------------------------------------------------------
+  public static void smartPut(JSONObject data, String key, String value) {
+    //if (ignoreKey(key)) { return this; }
+
+    if (data == null) {
+      return;
+    }
+
+    // Is it an integerish type
+    Pattern reInteger = Pattern.compile("^[0-9]+$");
+    Matcher mInteger = reInteger.matcher(value);
+    if (mInteger.find()) {
+      long n = Integer.parseInt(value);
+      put(data, key, n);
+      return;
+    }
+
+    // Is it a realish type
+    Pattern reNumber = Pattern.compile("^[0-9.]+$");
+    Matcher mNumber = reNumber.matcher(value);
+    if (mNumber.find()) {
+      double x = Double.parseDouble(value);
+      put(data, key, x);
+      return;
+    }
+
+    if (value.equals("true")) {
+      put(data, key, true);
+      return;
+    }
+
+    if (value.equals("false")) {
+      put(data, key, false);
+      return;
+    }
+
+    put(data, key, value);
   }
 
   // ------------------------------------------------------------------------------------------------------------------

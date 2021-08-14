@@ -36,6 +36,11 @@ public class LogItem {
     return put(key, value);
   }
 
+  // ------------------------------------------------------------------------------------------------------------------
+  public LogItem smartLog(String key, String value) {
+    return smartPut(key, value);
+  }
+
 
   // ------------------------------------------------------------------------------------------------------------------
   public LogItem meta(String key, String value) {
@@ -116,11 +121,17 @@ public class LogItem {
 
 
   // ==================================================================================================================
+  // Internal
 
   // ------------------------------------------------------------------------------------------------------------------
-  // Internal
   private <T> LogItem put(String key, T value) {
     U.put(data, key, value);
+    return this;
+  }
+
+  // ------------------------------------------------------------------------------------------------------------------
+  private LogItem smartPut(String key, String value) {
+    U.smartPut(data, key, value);
     return this;
   }
 

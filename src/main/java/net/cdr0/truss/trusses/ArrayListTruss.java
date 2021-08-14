@@ -45,4 +45,8 @@ public class ArrayListTruss extends Truss {
 //      Truss.mainTruss.sendLogAttr(attr, s, s2, s3, s4);
   }
 
+  // ------------------------------------------------------------------------------------------------------------------
+  public ArrayList<String> getOutputItems() {
+    return outputItems;
+  }
 }
