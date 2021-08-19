@@ -14,12 +14,15 @@ public class LogItem {
   private int level;
   private JSONObject data;
   private final HashMap<String, String> meta_;
+  public long tick;
 
   private final Truss truss;
 
 
   // ------------------------------------------------------------------------------------------------------------------
   public LogItem(Truss tr) {
+    this.tick = System.currentTimeMillis() - Truss.startMillis;
+
     this.truss = tr;
     this.meta_ = new HashMap<>();
     this.level = DEBUG;
@@ -28,6 +31,10 @@ public class LogItem {
       this.data = new JSONObject();
     } catch (Exception ex) {
       U.showException("TAG", ex, "LogItem c-tor");
+    }
+
+    if (Truss.useTick()) {
+      put("tick", this.tick);
     }
   }
 

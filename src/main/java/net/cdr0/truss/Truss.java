@@ -4,6 +4,7 @@ import net.cdr0.truss.kind.LogAttr;
 import net.cdr0.truss.kind.LogItem;
 import net.cdr0.truss.trusses.MainTruss;
 import net.cdr0.truss.trusses.NullTruss;
+import net.cdr0.truss.utils.Options;
 import net.cdr0.truss.utils.U;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class Truss {
   // App and module names
   protected String          appId;
   protected String          moduleName;
+
+  public static long startMillis              = -1;
+  private static final Options options = new Options();
 
   // Other Trusses to forward messages to
   private ArrayList<Truss>  destinations;
@@ -77,6 +81,10 @@ public class Truss {
 
   // ------------------------------------------------------------------------------------------------------------------
   protected void init_(String appId, String module) {
+    if (startMillis < 0) {
+      startMillis = System.currentTimeMillis();
+    }
+
     this.appId              = appId;
     this.moduleName         = module;
 
@@ -268,4 +276,30 @@ public class Truss {
   }
 
 
+  // ------------------------------------------------------------------------------------------------------------------
+  public static void setUseTick(boolean useTick) {
+    options.Set("useTick", useTick);
+  }
+
+  public static boolean useTick() {
+    return !options.is_false("useTick");
+  }
+
+
+  // ------------------------------------------------------------------------------------------------------------------
+  public static void option(String key, String value) {
+    options.Set(key, value);
+  }
+
+  public static boolean is_true(String key) {
+    return options.is_true(key);
+  }
+
+  public static boolean is_false(String key) {
+    return options.is_false(key);
+  }
+
+  public static String option(String key) {
+    return options.string(key);
+  }
 }

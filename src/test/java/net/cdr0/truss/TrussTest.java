@@ -3,6 +3,8 @@ package net.cdr0.truss;
 import net.cdr0.truss.trusses.ArrayListTruss;
 import net.cdr0.truss.trusses.MainTruss;
 import org.json.JSONException;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import java.util.ArrayList;
@@ -15,12 +17,23 @@ public class TrussTest {
   static String key = "key";
   static String value = "value";
 
+  Truss tr;
+
+  @BeforeEach
+  void setUp() {
+    Truss.setUseTick(false);
+    tr = new MainTruss("appId", "module", "sessionid");
+  }
+
+  @AfterEach
+  void tearDown() {
+  }
+
 
 
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void logd() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd().log(key, value).end();
@@ -31,7 +44,6 @@ public class TrussTest {
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void testLogLongNumber() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd().log(key, 42).end();
@@ -42,7 +54,6 @@ public class TrussTest {
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void testLogDoubleNumber() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd().log(key, 42.5).end();
@@ -53,7 +64,6 @@ public class TrussTest {
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void testLogBoolean() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd().log(key, true).end();
@@ -64,7 +74,6 @@ public class TrussTest {
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void testLogMulti() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd()
@@ -89,7 +98,6 @@ public class TrussTest {
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void testLogMultiMulti() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd()
@@ -123,7 +131,6 @@ public class TrussTest {
   // ------------------------------------------------------------------------------------------------------------------
   @Test
   public void testSmartLog() throws JSONException {
-    Truss tr = new MainTruss("appId", "module", "sessionid");
     ArrayListTruss capture = new ArrayListTruss(tr);
 
     tr.logd()

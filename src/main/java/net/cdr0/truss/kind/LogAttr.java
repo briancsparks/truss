@@ -4,21 +4,22 @@ import net.cdr0.truss.Truss;
 import net.cdr0.truss.utils.U;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
-
 import static net.cdr0.truss.utils.Constants.SEND_ALL;
 
 public class LogAttr {
 
   private JSONObject data;
   private final HashMap<String, String> meta_;
+  public long tick;
 
   private final Truss truss;
 
 
   // ------------------------------------------------------------------------------------------------------------------
   public LogAttr(Truss tr) {
+    this.tick = System.currentTimeMillis() - Truss.startMillis;
+
     this.truss = tr;
     this.meta_ = new HashMap<>();
 
@@ -26,6 +27,10 @@ public class LogAttr {
       this.data = new JSONObject();
     } catch (Exception ex) {
       ex.printStackTrace();
+    }
+
+    if (Truss.useTick()) {
+      put("tick", this.tick);
     }
   }
 
