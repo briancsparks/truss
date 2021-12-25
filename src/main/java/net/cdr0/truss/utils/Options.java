@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class Options {
 
-  private final Map<String, Boolean> boolOpts = new HashMap<>();
-  private final Map<String, String>  strOpts  = new HashMap<>();
-  private final Map<String, Long>    longOpts = new HashMap<>();
+  private final Map<String, Boolean> boolOpts   = new HashMap<>();
+  private final Map<String, String>  strOpts    = new HashMap<>();
+  private final Map<String, Long>    numberOpts = new HashMap<>();
 
   public Options() {
 
@@ -19,6 +19,10 @@ public class Options {
 
   public void Set(String key, String value) {
     strOpts.put(key, value);
+  }
+
+  public void Set(String key, Long value) {
+    numberOpts.put(key, value);
   }
 
   public boolean is_true(String key) {
